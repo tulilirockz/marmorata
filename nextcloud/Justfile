@@ -1,35 +1,6 @@
-install:
-    mkdir -p $HOME/.config/containers/systemd/
-    cp -f ./*.network $HOME/.config/containers/systemd
-    cp -f ./*.pod $HOME/.config/containers/systemd
-    cp -f ./*.container $HOME/.config/containers/systemd
+import "../base.just"
 
-deploy: install
-    systemctl --user daemon-reload
-    systemctl --user start nextcloud-network
-    # systemctl --user start nextcloud
+secrets: \
+    (gen-random-key "nextcloud_pgdb_pass") \
+    (gen-random-key "nextcloud_admin_pass")
 
-debug: deploy
-    /usr/libexec/podman/quadlet -dryrun -user | "${EDITOR}"
-
-clean:
-    #!/usr/bin/env bash
-    rm -f $HOME/.config/containers/systemd/nextcloud*
-    systemctl --user stop nextcloud*.service
-    podman ps -a -q | grep nextcloud | xargs -n1 podman stop
-    podman volume ls -q | grep nextcloud | xargs -n1 podman volume rm
-    podman ps -a -q | grep nextcloud | xargs -n1 podman rm 
-    podman network ls -q | grep nextcloud | xargs -n1 podman network rm || true
-
-secrets:
-    #!/usr/bin/env bash
-    source .env
-    echo $POSTGRES_PASSWORD | podman secret create --replace nextcloud_pgdb_pass -
-    echo $NEXTCLOUD_ADMIN_PASSWORD | podman secret create --replace nextcloud_admin_pass -
-
-gen-random-secret:
-    #!/usr/bin/env bash
-    cat >> .env <<EOF
-    POSTGRES_PASSWORD="$(openssl rand 128 | openssl base64 | xargs)"
-    NEXTCLOUD_ADMIN_PASSWORD="$(openssl rand 128 | openssl base64 | xargs)"
-    EOF
