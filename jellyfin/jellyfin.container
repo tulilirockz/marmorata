@@ -1,0 +1,30 @@
+[Unit]
+Description=Jellyfin Main Container
+Wants=network-online.target
+After=network-online.target
+
+[Container]
+ContainerName=jellyfin
+Image=docker.io/jellyfin/jellyfin:latest
+AutoUpdate=registry
+# https://jellyfin.org/docs/general/post-install/networking/
+PublishPort=8096:8096
+PublishPort=8920:8920
+PublishPort=7359:7359
+PublishPort=1900:1900
+Environment=JELLYFIN_PublishedServerUrl=http://taxifolia
+# Network=host
+UserNS=keep-id
+AddDevice=/dev/dri/:/dev/dri/
+Volume=jellyfin-config:/config:Z
+Volume=jellyfin-cache:/cache:Z
+# Volume=jellyfin-media:/media:Z
+Volume=$HOME/srv/jellyfin-media/:/media:Z
+
+[Service]
+Restart=always
+# Inform systemd of additional exit status
+SuccessExitStatus=0 143
+
+[Install]
+WantedBy=default.target
