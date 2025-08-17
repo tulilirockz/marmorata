@@ -5,9 +5,16 @@ install:
         INSTALL_LOCATION="/etc"
     fi
     mkdir -p "${INSTALL_LOCATION}/containers/systemd/"
-    cp -f ./*.network "${INSTALL_LOCATION}/containers/systemd" || true
-    cp -f ./*.pod "${INSTALL_LOCATION}/containers/systemd" || true
-    cp -f ./*.container "${INSTALL_LOCATION}/containers/systemd" || true
+
+    find . \
+        '(' \
+        -name '*.container' \
+        -or -name '*.pod' \
+        -or -name '*.network' \
+        ')' -print0 | \
+    while IFS= read -r -d '' line; do 
+        envsubst < "${line}" > "${INSTALL_LOCATION}/containers/systemd/${line}"
+    done
 
 deploy: install
     #!/usr/bin/env bash
@@ -41,3 +48,8 @@ read-secret $SECRET="":
 
 gen-random-key $PODMAN_SECRET="":
     openssl rand 128 | openssl base64 | xargs | podman secret create --replace "${PODMAN_SECRET}" -
+
+setup-system:
+    systemctl enable --now podman.socket
+    systemctl enable --user --now podman.socket
+    sudo setsebool -P container_use_dri_devices 1
