@@ -28,8 +28,8 @@ reinstall $app="": deploy
     fi
     systemctl --user stop $app*.service
     rm -f $INSTALL_LOCATION/containers/systemd/$app*
-    podman ps -a -q | grep "${app}" | xargs -n1 podman stop
-    podman ps -a -q | grep "${app}" | xargs -n1 podman rm
+    podman ps -a -q | grep "${app}" | xargs -n1 podman stop || true
+    podman ps -a -q | grep "${app}" | xargs -n1 podman rm || true
 
 deploy: install
     #!/usr/bin/env bash
