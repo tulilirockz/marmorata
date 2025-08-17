@@ -4,7 +4,6 @@ After=network-online.target
 Wants=network-online.target
 
 [Container]
-PublishPort=9090:9090
 ContainerName=cockpit-ws
 Image=quay.io/cockpit/ws:latest
 Environment=NAME=cockpit-ws
