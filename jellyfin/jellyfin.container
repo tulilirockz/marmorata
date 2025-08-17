@@ -19,7 +19,7 @@ AddDevice=/dev/dri/:/dev/dri/
 Volume=jellyfin-config:/config:Z
 Volume=jellyfin-cache:/cache:Z
 # Volume=jellyfin-media:/media:Z
-Volume=$HOME/srv/jellyfin-media/:/media:Z
+Volume=$HOME/srv/jellyfin-media/:/media:z
 
 [Service]
 Restart=always
