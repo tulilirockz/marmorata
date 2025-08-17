@@ -4,17 +4,20 @@ Wants=network-online.target
 After=network-online.target
 
 [Container]
-ContainerName=qbittorrent-nox
-Image=docker.io/qbittorrentofficial/qbittorrent-nox:latest
+ContainerName=qbittorrent
+Image=lscr.io/linuxserver/qbittorrent:latest
 AutoUpdate=registry
 Volume=$HOME/srv/jellyfin-media/:/media:z
 Volume=qbittorrent_config:/config:Z
+Volume=qbittorrent_torrent_files:/torrent_files:Z
 Environment=QBT_LEGAL_NOTICE=confirm
 Environment=QBT_VERSION=latest
-Environment=QBT_TORRENTING_PORT=6881
 Environment=QBT_CONFIG_PATH=/config
 Environment=QBT_DOWNLOADS_PATH=/media
-Environment=QBT_WEBUI_PORT=9500
+Environment=PUID=0
+Environment=PGID=0
+Environment=WEBUI_PORT=9500
+Environment=TORRENTING_PORT=6881
 PublishPort=6881:6881
 PublishPort=9500:9500
 
