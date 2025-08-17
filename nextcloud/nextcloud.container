@@ -13,6 +13,7 @@ Volume=nextcloud_web:/var/www/html:Z
 Volume=nextcloud_apps:/var/www/html/custom_apps:Z
 Volume=nextcloud_config:/var/www/html/config:Z
 Volume=nextcloud_data:/var/www/html/data:Z
+Volume=$HOME/srv/jellyfin-media/:/media:z
 
 Environment=NEXTCLOUD_TRUSTED_DOMAINS=taxifolia
 Environment=NEXTCLOUD_ADMIN_USER=mycorrhizal

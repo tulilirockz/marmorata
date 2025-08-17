@@ -1,5 +1,11 @@
 import "../base.just"
 
+
+default: create-directories secrets deploy
+
+create-directories:
+    mkdir -p "${HOME}/srv/jellyfin-media"
+
 secrets: \
     (gen-random-key "nextcloud_pgdb_pass") \
     (gen-random-key "nextcloud_admin_pass")
