@@ -24,8 +24,6 @@ Environment=POSTGRES_HOST=nextcloud-pgdb
 Secret=nextcloud_pgdb_pass,type=env,target=POSTGRES_PASSWORD
 
 Environment=REDIS_HOST=nextcloud-ramdb
-# Secret=nextcloud_ramdb_pass,type=env,target=REDIS_HOST_PASSWORD
-
 
 [Service]
 Restart=always
