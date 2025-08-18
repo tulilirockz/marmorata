@@ -2,4 +2,5 @@ import "../base.just"
 
 default: deploy
 
-secrets: (gen-random-key "pihole_admin_pass")
+gen-secret:
+    podman exec -it $(podman ps | grep pihole | awk '{print $1}') /bin/sh -c 'pihole setpassword'
