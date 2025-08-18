@@ -1,0 +1,19 @@
+[Unit]
+Description=Pihole DNS server
+
+[Container]
+ContainerName=pihole
+Image=docker.io/pihole/pihole:latest
+# AutoUpdate=registry
+PublishPort=53:53
+PublishPort=4060:80
+PublishPort=4061:443
+Volume=pihole_config:/etc/pihole:Z
+Environment=TZ=America/Sao_Paulo
+Secret=pihole_admin_pass,type=env,target=FTLCONF_webserver_api_password
+
+[Service]
+restart=always
+
+[Install]
+WantedBy=default.target

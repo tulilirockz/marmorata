@@ -1,0 +1,5 @@
+import "../base.just"
+
+default: deploy
+
+secrets: (gen-random-key "pihole_admin_pass")
