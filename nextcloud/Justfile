@@ -19,5 +19,5 @@ install-cronjobs:
     fi
     mkdir -p "${INSTALL_LOCATION}"
     install -Dpm0644 -t "${INSTALL_LOCATION}" ./nextcloud-cron*
-    systemctl reload-daemon --user
+    systemctl daemon-reload --user
     systemctl enable --user --now nextcloud-cron.timer
