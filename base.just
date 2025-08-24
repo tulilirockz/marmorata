@@ -16,7 +16,7 @@ install:
         envsubst < "${line}" > "${INSTALL_LOCATION}/containers/systemd/${line}"
     done
 
-reinstall $app="": deploy
+kill $app="":
     #!/usr/bin/env bash
     set -x
     INSTALL_LOCATION="$HOME/.config"
@@ -31,6 +31,12 @@ reinstall $app="": deploy
     podman ps -a -q | grep "${app}" | xargs -n1 podman stop || true
     podman ps -a -q | grep "${app}" | xargs -n1 podman rm || true
 
+clean $app="":
+    #!/usr/bin/env bash
+    just kill $app
+    podman volume ls -q | grep "${app}" | xargs -n1 podman volume rm
+    podman network ls -q | grep "${app}" | xargs -n1 podman network rm || true
+
 deploy: install
     #!/usr/bin/env bash
     if [ "$(id -u)" == "0" ] ; then
@@ -40,23 +46,6 @@ deploy: install
 
 debug: deploy
     /usr/libexec/podman/quadlet -dryrun -user | "${EDITOR}"
-
-clean $app="":
-    #!/usr/bin/env bash
-    set -x
-    INSTALL_LOCATION="$HOME/.config"
-    if [ "$(id -u)" == "0" ] ; then
-        INSTALL_LOCATION="/etc"
-    fi
-    if [ "${app}" == "" ] ; then
-        app="$(basename "${PWD}")"
-    fi
-    systemctl --user stop $app*.service
-    rm -f $INSTALL_LOCATION/containers/systemd/$app*
-    podman ps -a -q | grep "${app}" | xargs -n1 podman stop
-    podman volume ls -q | grep "${app}" | xargs -n1 podman volume rm
-    podman ps -a -q | grep "${app}" | xargs -n1 podman rm 
-    podman network ls -q | grep "${app}" | xargs -n1 podman network rm || true
 
 read-secret $SECRET="":
     podman run --rm -it --secret "${SECRET},type=env,target=ENVSEC" docker.io/library/busybox:latest sh -c 'echo $ENVSEC'
