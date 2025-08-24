@@ -10,3 +10,14 @@ secrets: \
     (gen-random-key "nextcloud_pgdb_pass") \
     (gen-random-key "nextcloud_admin_pass")
 
+install-cronjobs:
+    #!/usr/bin/env bash
+    if [ "$(id -u)" == "0" ] ; then
+        INSTALL_LOCATION="/etc/systemd/system"
+    else
+        INSTALL_LOCATION="$HOME/.config/systemd/user"
+    fi
+    mkdir -p "${INSTALL_LOCATION}"
+    install -Dpm0644 -t "${INSTALL_LOCATION}" ./nextcloud-cron*
+    systemctl reload-daemon --user
+    systemctl enable --user --now nextcloud-cron.timer

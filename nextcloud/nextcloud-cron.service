@@ -1,0 +1,5 @@
+[Unit]
+Description=Runs NextCloud cronjobs
+
+[Service]
+ExecStart=/bin/bash -c 'podman exec -it -u www-data $(podman ps --filter "name=^nextcloud$" -q) php /var/www/html/cron.php'
