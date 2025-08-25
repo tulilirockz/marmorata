@@ -11,7 +11,7 @@ WantedBy=default.target
 
 [Container]
 ContainerName=qbittorrent
-Image=qbittorrentofficial/qbittorrent-nox:latest
+Image=docker.io/qbittorrentofficial/qbittorrent-nox:latest
 AutoUpdate=registry
 Volume=$HOME/srv/jellyfin-media/:/media:z
 Volume=qbittorrent_config:/config:Z
@@ -20,8 +20,8 @@ Environment=QBT_LEGAL_NOTICE=confirm
 Environment=QBT_VERSION=latest
 Environment=QBT_CONFIG_PATH=/config
 Environment=QBT_DOWNLOADS_PATH=/media
-Environment=WEBUI_PORT=9500
-Environment=TORRENTING_PORT=6881
+Environment=QBT_WEBUI_PORT=9500
+Environment=QBT_TORRENTING_PORT=6881
 PublishPort=6881:6881
 PublishPort=9500:9500
 # Volume sharing
