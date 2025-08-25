@@ -17,3 +17,6 @@ Volume=$HOME/srv/jellyfin-media/:/srv/jellyfin-media:z
 Volume=syncthing_config:/var/syncthing:Z
 PublishPort=9384:8384
 PublishPort=22000:22000
+# Volume sharing
+Environment=PUID=0
+Environment=PGID=0
