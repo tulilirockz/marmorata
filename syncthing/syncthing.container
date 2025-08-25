@@ -1,0 +1,19 @@
+[Unit]
+Description=Syncthing container
+Wants=basic.target
+After=basic.target
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=syncthing
+Image=docker.io/syncthing/syncthing:latest
+AutoUpdate=registry
+Volume=$HOME/srv/jellyfin-media/:/srv/jellyfin-media:z
+Volume=syncthing_config:/var/syncthing:Z
+PublishPort=9384:8384
+PublishPort=22000:22000
