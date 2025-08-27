@@ -1,0 +1,20 @@
+[Unit]
+Description=Uptime Kuma database container
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+RequiredBy=uptime-kuma.service
+
+[Container]
+ContainerName=uptime-kuma-db
+Image=docker.io/library/mariadb:12-noble
+AutoUpdate=registry
+Pod=uptime-kuma.pod
+Environment=MARIADB_USER=mariadb
+Environment=MARIADB_DATABASE=mariadb
+Environment=MARIADB_RANDOM_ROOT_PASSWORD=1
+Volume=uptime_kuma_db_data:/var/lib/mysql:Z
+Secret=uptime_kuma_db_pass,type=env,target=MARIADB_PASSWORD
