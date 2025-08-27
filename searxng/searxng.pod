@@ -3,4 +3,4 @@ Description=Searxng pod
 
 [Pod]
 PodName=searxng
-PublishPort=9095:8080
+PublishPort=9080:8080
