@@ -13,6 +13,8 @@ ContainerName=uptime-kuma-db
 Image=docker.io/library/mariadb:12-noble
 AutoUpdate=registry
 Pod=uptime-kuma.pod
+Network=host
+Environment=MYSQL_TCP_PORT=9336
 Environment=MARIADB_USER=mariadb
 Environment=MARIADB_DATABASE=mariadb
 Environment=MARIADB_RANDOM_ROOT_PASSWORD=1

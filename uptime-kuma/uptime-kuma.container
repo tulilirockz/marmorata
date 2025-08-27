@@ -13,8 +13,11 @@ Image=docker.io/louislam/uptime-kuma:beta-rootless
 AutoUpdate=registry
 Volume=uptime_kuma_data:/app/data:Z
 Pod=uptime-kuma.pod
+Network=host
 Environment=UPTIME_KUMA_DB_TYPE=mariadb
-Environment=UPTIME_KUMA_DB_HOSTNAME=uptime-kuma-db
+Environment=UPTIME_KUMA_DB_HOSTNAME=localhost
 Environment=UPTIME_KUMA_DB_NAME=mariadb
+Environment=UPTIME_KUMA_DB_PORT=9336
 Environment=UPTIME_KUMA_DB_USERNAME=mariadb
+Environment=UPTIME_KUMA_PORT=9001
 Secret=uptime_kuma_db_pass,type=env,target=UPTIME_KUMA_DB_PASSWORD

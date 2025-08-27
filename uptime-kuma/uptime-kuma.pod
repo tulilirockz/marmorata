@@ -3,4 +3,3 @@ Description=Uptime Kuma pod
 
 [Pod]
 PodName=uptime-kuma
-PublishPort=9001:3001/tcp
