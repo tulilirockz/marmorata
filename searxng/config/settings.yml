@@ -10,6 +10,7 @@ server:
   bind_address: "127.0.0.1"
   limiter: false
   public_instance: false
+  method: "GET"
   image_proxy: true
 ui:
   query_in_title: false
