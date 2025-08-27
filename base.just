@@ -62,6 +62,9 @@ setup-system:
 clean $app="":
     #!/usr/bin/env bash
     set -x
+    if [ "${app}" == "" ] ; then
+        app="$(basename "${PWD}")"
+    fi
     {{ just }} kill $app
     podman volume ls -q | grep "${app}" | xargs -n1 podman volume rm
     podman network ls -q | grep "${app}" | xargs -n1 podman network rm || true
