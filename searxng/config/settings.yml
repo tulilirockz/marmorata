@@ -1,0 +1,54 @@
+use_default_settings:
+  engines:
+    remove:
+      - startpage
+      - wikidata
+server:
+  base_url: http://taxifolia:9080
+  secret_key: "8qbF3mDjG9oXgA0yB1hBtF7deQKpKK5YVKYbPLUqCE1wSbeDYCGadaGyH33wD1q8 YXWepsp/1SGFV0er/yimGw==" # idfc
+  port: 8080
+  bind_address: "127.0.0.1"
+  limiter: false
+  public_instance: false
+  image_proxy: true
+ui:
+  query_in_title: false
+  infinite_scroll: true
+  center_alignment: true
+  default_theme: simple
+  theme_args:
+    simple_style: black
+  search_on_category_select: true
+  hotkeys: vim
+  url_formatting: full
+search:
+  autocomplete: "duckduckgo"
+  formats:
+    - html
+    - rss
+outgoing:
+  request_timeout: 1.0
+  pool_connections: 200
+  pool_maxsize: 20
+  max_request_timeout: 2.0
+brand:
+  issue_url: https://github.com/tulilirockz/marmorata/issues
+plugins:
+  searx.plugins.calculator.SXNGPlugin:
+    active: true
+  searx.plugins.hash_plugin.SXNGPlugin:
+    active: true
+  searx.plugins.self_info.SXNGPlugin:
+    active: true
+  searx.plugins.tracker_url_remover.SXNGPlugin:
+    active: true
+  searx.plugins.unit_converter.SXNGPlugin:
+    active: true
+  searx.plugins.ahmia_filter.SXNGPlugin:
+    active: true
+  searx.plugins.hostnames.SXNGPlugin:
+    active: true
+  searx.plugins.oa_doi_rewrite.SXNGPlugin:
+    active: true
+valkey:
+  url: valkey://searxng-ramdb:6379/0
