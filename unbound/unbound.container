@@ -19,7 +19,3 @@ Volume=unbound_log:/var/log/unbound:Z
 # DNS Ports
 PublishPort=53:53/tcp
 PublishPort=53:53/udp
-
-AddCapability=NET_ADMIN
-AddCapability=NET_BIND_SERVICE
-AddCapability=NET_RAW
