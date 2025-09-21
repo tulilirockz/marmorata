@@ -1,0 +1,7 @@
+import "../base.just"
+
+default: deploy
+
+user:
+    podman exec -it freshrss cli/create-user.php --user alice --password alice
+    podman exec -it freshrss cli/access-permissions.sh
