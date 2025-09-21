@@ -83,3 +83,15 @@ debug: deploy
     /usr/libexec/podman/quadlet -dryrun -user | "${EDITOR}"
 
 deploy: install daemon-reload
+
+start $app="":
+    #!/usr/bin/env bash
+    set -x
+    if [ "${app}" == "" ] ; then
+        app="$(basename "${PWD}")"
+    fi
+    if [ "$(id -u)" == "0" ] ; then
+        systemctl start $app*.service
+    else
+        systemctl --user start $app*.service
+    fi
