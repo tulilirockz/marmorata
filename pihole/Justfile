@@ -1,6 +1,0 @@
-import "../base.just"
-
-default: deploy
-
-gen-secret:
-    podman exec -it $(podman ps | grep pihole | awk '{print $1}') /bin/sh -c 'pihole setpassword'

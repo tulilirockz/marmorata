@@ -1,5 +1,0 @@
-import "../base.just"
-
-default: deploy
-
-secrets: (gen-random-key "uptime_kuma_db_pass")

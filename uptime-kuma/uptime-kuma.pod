@@ -1,5 +1,0 @@
-[Unit]
-Description=Uptime Kuma pod
-
-[Pod]
-PodName=uptime-kuma
