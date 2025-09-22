@@ -104,8 +104,8 @@ firewalld-xml $app="":
     printf "%s\n" '<?xml version="1.0" encoding="utf-8"?>'
     printf "%s\n" '<service>'
     printf "\t%s\n" "<short>$app</short>"
-    printf "\t%s\n" "<description>$(grep -E 'Description=.*' "./${app}/${app}.container" | cut -d'=' -f2)</description>"
-    grep -oP 'PublishPort=.*' "./${app}/${app}.container" | \
+    printf "\t%s\n" "<description>$(grep -E 'Description=.*' "./${app}.container" | cut -d'=' -f2)</description>"
+    grep -oP 'PublishPort=.*' "./${app}.container" | \
         cut -d'=' -f2 | \
         uniq | \
         xargs -I{} printf "%s\0" "{}," | \
