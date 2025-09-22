@@ -8,10 +8,14 @@ ContainerName=jellyfin
 Image=docker.io/jellyfin/jellyfin:latest
 AutoUpdate=registry
 # https://jellyfin.org/docs/general/post-install/networking/
-PublishPort=8096:8096
-PublishPort=8920:8920
-PublishPort=7359:7359
-PublishPort=1900:1900
+PublishPort=8096:8096/tcp
+PublishPort=8096:8096/udp
+PublishPort=8920:8920/tcp
+PublishPort=8920:8920/udp
+PublishPort=7359:7359/tcp
+PublishPort=7359:7359/udp
+PublishPort=1900:1900/tcp
+PublishPort=1900:1900/udp
 Environment=JELLYFIN_PublishedServerUrl=http://taxifolia
 UserNS=keep-id
 AddDevice=/dev/dri/:/dev/dri/
