@@ -91,7 +91,32 @@ start $app="":
         app="$(basename "${PWD}")"
     fi
     if [ "$(id -u)" == "0" ] ; then
-        systemctl start $app*.service
+        systemctl start $app.service
     else
-        systemctl --user start $app*.service
+        systemctl --user start $app.service
     fi
+
+firewalld-xml $app="":
+    #!/bin/sh
+    if [ "${app}" == "" ] ; then
+        app="$(basename "${PWD}")"
+    fi
+    printf "%s\n" '<?xml version="1.0" encoding="utf-8"?>'
+    printf "%s\n" '<service>'
+    printf "\t%s\n" "<short>$app</short>"
+    printf "\t%s\n" "<description>$(grep -E 'Description=.*' "./${app}/${app}.container" | cut -d'=' -f2)</description>"
+    grep -oP 'PublishPort=.*' "./${app}/${app}.container" | \
+        cut -d'=' -f2 | \
+        uniq | \
+        xargs -I{} printf "%s\0" "{}," | \
+        while IFS= read -r -d '' line; do 
+            printf "\t%s\n" "<port protocol=\"$(cut -f2 -d/ <<< $line | tr -d ',')\" port=\"$(cut -f1 -d: <<< $line | tr -d ',')\"/>"
+        done
+    printf "%s\n" '</service>'
+
+firewall $app="":
+    #!/usr/bin/env bash
+    if [ "${app}" == "" ] ; then
+        app="$(basename "${PWD}")"
+    fi
+    {{ just }} firewall-xml "${app}" | tee "/etc/firewalld/services/${app}.xml"
