@@ -119,4 +119,4 @@ firewall $app="":
     if [ "${app}" == "" ] ; then
         app="$(basename "${PWD}")"
     fi
-    {{ just }} firewall-xml "${app}" | tee "/etc/firewalld/services/${app}.xml"
+    {{ just }} firewalld-xml "${app}" | tee "/etc/firewalld/services/${app}.xml"
