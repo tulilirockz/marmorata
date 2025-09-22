@@ -4,4 +4,5 @@ Description=Nextcloud pod
 [Pod]
 PodName=nextcloud
 # Network=nextcloud.network
-PublishPort=9095:80
+PublishPort=9095:80/tcp
+PublishPort=9095:80/udp
