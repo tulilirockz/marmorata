@@ -1,0 +1,21 @@
+[Unit]
+Description=Hydroxide multi server
+
+[Service]
+restart=always
+
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=hydroxide
+Image=ghcr.io/tulilirockz/hydroxide:latest
+AutoUpdate=registry
+Volume=hydroxide_data:/home/hydroxide/.config/hydroxide:Z
+Exec=serve
+# CalDAV
+PublishPort=9132:8080
+# SMTP
+PublishPort=9551:1025
+# IMAP
+PublishPort=9552:1143
