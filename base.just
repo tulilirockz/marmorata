@@ -106,18 +106,21 @@ firewalld-xml $app="":
     printf "%s\n" '<service>'
     printf "\t%s\n" "<short>$app</short>"
     printf "\t%s\n" "<description>$(grep -E 'Description=.*' "./${app}.container" | cut -d'=' -f2)</description>"
+    set +euo pipefail
     grep -v "#" "./${app}.container" "./${app}.pod" "./${app}.network" | \
         grep -oP 'PublishPort=.*' | \
         cut -d'=' -f2 | \
         uniq | \
         xargs -I{} printf "%s\0" "{}," | \
         while IFS= read -r -d '' line; do 
+            set -euo pipefail
             if [ "$(cut -f2 -d/ <<< $line)" == "$line" ] ; then
                 printf "%s" "Invalid protocol" >&1
                 exit 1
             fi
             printf "\t%s\n" "<port protocol=\"$(cut -f2 -d/ <<< $line | tr -d ',')\" port=\"$(cut -f1 -d: <<< $line | tr -d ',')\"/>"
         done
+    set -euo pipefail
     printf "%s\n" '</service>'
 
 firewall $app="":
