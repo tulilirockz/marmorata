@@ -8,8 +8,8 @@ ContainerName=jellyfin
 Image=docker.io/jellyfin/jellyfin:latest
 AutoUpdate=registry
 # https://jellyfin.org/docs/general/post-install/networking/
-PublishPort=8096:8096/tcp
-PublishPort=8096:8096/udp
+PublishPort=9096:8096/tcp
+PublishPort=9096:8096/udp
 PublishPort=8920:8920/tcp
 PublishPort=8920:8920/udp
 PublishPort=7359:7359/tcp
