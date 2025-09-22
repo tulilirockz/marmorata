@@ -9,7 +9,7 @@ WantedBy=default.target
 
 [Container]
 ContainerName=unbound
-Image=localhost/unbound:latest
+Image=ghcr.io/tulilirockz/unbound:latest
 User=0
 AutoUpdate=registry
 Volume=unbound_data:/var/lib/unbound:Z
