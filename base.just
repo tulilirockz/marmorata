@@ -98,6 +98,7 @@ start $app="":
 
 firewalld-xml $app="":
     #!/bin/sh
+    set -euo pipefail
     if [ "${app}" == "" ] ; then
         app="$(basename "${PWD}")"
     fi
@@ -121,7 +122,7 @@ firewalld-xml $app="":
 
 firewall $app="":
     #!/usr/bin/env bash
-    set -x
+    set -xeuo pipefail
     if [ "${app}" == "" ] ; then
         app="$(basename "${PWD}")"
     fi
