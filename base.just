@@ -96,7 +96,7 @@ start $app="":
         systemctl --user start $app.service
     fi
 
-firewalld-xml $app="":
+firewall-xml $app="":
     #!/bin/sh
     set -euo pipefail
     if [ "${app}" == "" ] ; then
@@ -129,6 +129,6 @@ firewall $app="":
     if [ "${app}" == "" ] ; then
         app="$(basename "${PWD}")"
     fi
-    {{ just }} firewalld-xml "${app}" | tee "/etc/firewalld/services/${app}.xml"
+    {{ just }} firewall-xml "${app}" | tee "/etc/firewalld/services/${app}.xml"
     firewall-cmd --reload
     firewall-cmd "--add-service=${app}"
