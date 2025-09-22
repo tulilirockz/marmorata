@@ -107,7 +107,7 @@ firewalld-xml $app="":
     printf "\t%s\n" "<short>$app</short>"
     printf "\t%s\n" "<description>$(grep -E 'Description=.*' "./${app}.container" | cut -d'=' -f2)</description>"
     set +euo pipefail
-    grep -v "#" "./${app}.container" "./${app}.pod" "./${app}.network" | \
+    grep -v "#" "./${app}".* 2>/dev/null | \
         grep -oP 'PublishPort=.*' | \
         cut -d'=' -f2 | \
         uniq | \
