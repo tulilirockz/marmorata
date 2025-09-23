@@ -10,7 +10,6 @@ WantedBy=default.target
 [Container]
 ContainerName=unbound
 Image=ghcr.io/tulilirockz/unbound:latest
-User=0
 AutoUpdate=registry
 Volume=unbound_data:/var/lib/unbound:Z
 Volume=$PWD/unbound.conf:/etc/unbound/unbound.conf:Z
