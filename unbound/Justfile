@@ -2,8 +2,7 @@ import "../base.just"
 
 default: deploy
 
-allow-unprivileged:
-    sysctl net.ipv4.ip_unprivileged_port_start=0
-    echo 'net.ipv4.ip_unprivileged_port_start=0' > /etc/sysctl.d/50-unprivileged-ports.conf
-    sysctl --system
+forward:
+    firewall-cmd --add-forward-port=port=53:proto=tcp:toport=5335
+    firewall-cmd --add-forward-port=port=53:proto=udp:toport=5335
 

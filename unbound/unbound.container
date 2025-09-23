@@ -16,6 +16,6 @@ Volume=unbound_data:/var/lib/unbound:Z
 Volume=$PWD/unbound.conf:/etc/unbound/unbound.conf:Z
 Volume=unbound_log:/var/log/unbound:Z
 
-# DNS Ports
-PublishPort=53:53/tcp
-PublishPort=53:53/udp
+# DNS Ports redirected to 53 using firewalld
+PublishPort=5335:53/tcp
+PublishPort=5335:53/udp
