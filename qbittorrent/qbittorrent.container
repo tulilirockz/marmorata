@@ -22,8 +22,10 @@ Environment=QBT_CONFIG_PATH=/config
 Environment=QBT_DOWNLOADS_PATH=/media
 Environment=QBT_WEBUI_PORT=9500
 Environment=QBT_TORRENTING_PORT=6881
-PublishPort=6881:6881
-PublishPort=9500:9500
+PublishPort=6881:6881/tcp
+PublishPort=6881:6881/udp
+PublishPort=9500:9500/tcp
+PublishPort=9500:9500/udp
 # Volume sharing
 Environment=PUID=0
 Environment=PGID=0
