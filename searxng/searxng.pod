@@ -1,7 +1,0 @@
-[Unit]
-Description=Searxng pod
-
-[Pod]
-PodName=searxng
-PublishPort=9080:8080/tcp
-PublishPort=9080:8080/udp
