@@ -6,7 +6,6 @@ After=network-online.target
 [Container]
 ContainerName=searxng
 Image=docker.io/searxng/searxng:latest
-Pod=searxng.pod
 AutoUpdate=registry
 Volume=$PWD/config:/etc/searxng:Z
 Volume=searxng_cache:/var/cache/searxng:Z
