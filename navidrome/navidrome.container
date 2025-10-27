@@ -10,7 +10,7 @@ Restart=always
 WantedBy=default.target
 
 [Container]
-ContainerName=baikal
+ContainerName=navidrome
 Image=docker.io/deluan/navidrome:latest
 User=1000
 AutoUpdate=registry
