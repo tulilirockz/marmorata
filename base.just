@@ -130,5 +130,3 @@ firewall $app="":
         app="$(basename "${PWD}")"
     fi
     {{ just }} firewall-xml "${app}" | tee "/etc/firewalld/services/${app}.xml"
-    firewall-cmd --reload
-    firewall-cmd "--add-service=${app}"
