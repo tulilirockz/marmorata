@@ -17,4 +17,4 @@ AutoUpdate=registry
 PublishPort=9533:4533/tcp
 PublishPort=9533:4533/udp
 Volume=navidrome_data:/data:Z
-Volume=%h/jellyfin-media/music-tulip:/music:z,ro
+Volume=%h/srv/jellyfin-media/music-tulip:/music:z,ro
