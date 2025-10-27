@@ -1,0 +1,20 @@
+[Unit]
+Description=Navidrome Main Container
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=baikal
+Image=docker.io/deluan/navidrome:latest
+User=1000
+AutoUpdate=registry
+PublishPort=9533:4533/tcp
+PublishPort=9533:4533/udp
+Volume=navidrome_data:/data:Z
+Volume=%h/jellyfin-media/music-tulip:/music:z,ro
