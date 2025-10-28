@@ -4,7 +4,10 @@ image_name := "ghcr.io/tulilirockz/radicale:latest"
 users_path := "/srv/data/users"
 default_user := "alice"
 
-default: deploy
+default: create-directories deploy
+
+create-directories:
+    mkdir -p "${HOME}/srv/radicale_data/data"
 
 user:
     podman run --rm -it -v "$HOME/srv/radicale_data:/srv/data:Z,rw" --entrypoint htpasswd {{ image_name }} -5 -c {{ users_path }} {{ default_user }}
