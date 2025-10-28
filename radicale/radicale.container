@@ -1,0 +1,19 @@
+[Unit]
+Description=Radicale Main Container
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=radicale
+Image=ghcr.io/tulilirockz/radicale:latest
+AutoUpdate=registry
+PublishPort=9232:5232/tcp
+PublishPort=9232:5232/udp
+Volume=$PWD/radicale.ini:/etc/radicale/config:Z,ro
+Volume=%h/srv/radicale_data:/srv/data:Z,rw
