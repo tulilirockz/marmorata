@@ -13,11 +13,9 @@ WantedBy=default.target
 ContainerName=freshrss
 Image=docker.io/freshrss/freshrss:alpine
 AutoUpdate=registry
-
 PublishPort=9736:80/tcp
 PublishPort=9736:80/udp
-
-Volume=freshrss_data:/var/www/FreshRSS/data:Z
+Volume=%h/srv/freshrss/data:/var/www/FreshRSS/data:Z
 Volume=freshrss_extensions:/var/www/FreshRSS/extensions:Z
 Environment=TZ=America/Sao_Paulo
 Environment=CRON_MIN=2,32

@@ -1,6 +1,9 @@
 import "../base.just"
 
-default: deploy
+default: create-directories deploy
+
+create-directories:
+    mkdir -p "${HOME}/srv/freshrss/data"
 
 user:
     podman exec -it freshrss cli/create-user.php --user alice --password alice
