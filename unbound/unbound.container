@@ -1,6 +1,9 @@
 [Unit]
 Description=Unbound DNS server
 
+[Quadlet]
+DefaultDependencies=false
+
 [Service]
 restart=always
 
