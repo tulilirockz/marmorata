@@ -11,10 +11,10 @@ WantedBy=default.target
 
 [Container]
 ContainerName=navidrome
-Image=docker.io/deluan/navidrome:latest
-User=1000
+Image=ghcr.io/tulilirockz/navidrome:latest
 AutoUpdate=registry
 PublishPort=9533:4533/tcp
 PublishPort=9533:4533/udp
-Volume=navidrome_data:/data:Z
+Volume=navidrome_cache:/var/lib/navidrome/cache:Z
+Volume=navidrome_data:/var/lib/navidrome/data:Z
 Volume=%h/srv/jellyfin-media/music-tulip:/music:z,ro
