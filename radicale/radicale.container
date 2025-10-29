@@ -11,7 +11,7 @@ WantedBy=default.target
 
 [Container]
 ContainerName=radicale
-Image=ghcr.io/tulilirockz/radicale:latest
+Image=ghcr.io/tulilirockz/triticum/radicale:latest
 AutoUpdate=registry
 PublishPort=9232:5232/tcp
 PublishPort=9232:5232/udp

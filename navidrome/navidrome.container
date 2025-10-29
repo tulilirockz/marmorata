@@ -11,7 +11,7 @@ WantedBy=default.target
 
 [Container]
 ContainerName=navidrome
-Image=ghcr.io/tulilirockz/navidrome:latest
+Image=ghcr.io/tulilirockz/triticum/navidrome:latest
 AutoUpdate=registry
 PublishPort=9533:4533/tcp
 PublishPort=9533:4533/udp
