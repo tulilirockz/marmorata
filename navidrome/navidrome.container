@@ -17,4 +17,4 @@ PublishPort=9533:4533/tcp
 PublishPort=9533:4533/udp
 Volume=navidrome_cache:/var/lib/navidrome/cache:Z
 Volume=navidrome_data:/var/lib/navidrome/data:Z
-Volume=%h/srv/jellyfin-media/music-tulip:/music:z,ro
+Volume=%h/srv/jellyfin-media/music-tulip:/var/lib/navidrome/music:z,ro
