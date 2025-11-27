@@ -3,4 +3,5 @@ Description=Miniflux pod
 
 [Pod]
 PodName=miniflux
-PublishPort=9130:9130
+PublishPort=9130:9130/tcp
+PublishPort=9130:9130/udp
