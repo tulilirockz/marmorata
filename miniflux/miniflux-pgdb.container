@@ -12,7 +12,7 @@ AutoUpdate=registry
 Pod=miniflux.pod
 AutoUpdate=registry
 Secret=miniflux_pgdb_pass,type=env,target=POSTGRES_PASSWORD
-Volume=miniflux_pgdb:/var/lib/postgresql/data/pgdata:Z
+Volume=%h/srv/miniflux-db:/var/lib/postgresql/data/pgdata:Z
 Environment=PGDATA=/var/lib/postgresql/data/pgdata
 Environment=PGPORT=5432
 Environment=POSTGRES_USER=postgres
