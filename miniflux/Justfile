@@ -1,6 +1,9 @@
 import "../base.just"
 
-default: secrets deploy
+default: create-directories secrets deploy
+
+create-directories:
+    mkdir -p "${HOME}/srv/miniflux-db"
 
 secrets: \
     (gen-random-key "miniflux_pgdb_pass") \
