@@ -49,9 +49,9 @@ read-secret $SECRET="":
     set -x
     podman run --rm -it --secret "${SECRET},type=env,target=ENVSEC" docker.io/library/busybox:latest sh -c 'echo $ENVSEC'
 
-gen-random-key $PODMAN_SECRET="":
+gen-random-key $PODMAN_SECRET="" $BYTES="128":
     set -x
-    openssl rand 128 | openssl base64 | xargs | podman secret create --replace "${PODMAN_SECRET}" -
+    openssl rand "${BYTES:-128}" | openssl base64 | xargs | podman secret create --replace "${PODMAN_SECRET}" -
 
 setup-system:
     set -x

@@ -1,0 +1,6 @@
+[Unit]
+Description=Miniflux pod
+
+[Pod]
+PodName=miniflux
+PublishPort=9130:9130

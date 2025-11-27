@@ -1,0 +1,26 @@
+[Unit]
+Description=Miniflux Main Container
+Wants=network-online.target
+After=network-online.target
+After=miniflux-pgdb.service
+
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=miniflux
+Image=ghcr.io/tulilirockz/triticum/miniflux:latest
+Pod=miniflux.pod
+AutoUpdate=registry
+Environment=RUN_MIGRATIONS=true
+Environment=LISTEN_ADDR=0.0.0.0:9130
+Environment=ADMIN_USERNAME=alice
+Environment=CREATE_ADMIN=1
+Secret=miniflux_admin_pass,type=env,target=ADMIN_PASSWORD
+
+
+Environment=POSTGRES_DB=postgres
+Environment=POSTGRES_USER=postgres
+Environment=POSTGRES_HOST=miniflux-pgdb
+Secret=miniflux_pgdb_pass,type=env,target=POSTGRES_PASSWORD
+

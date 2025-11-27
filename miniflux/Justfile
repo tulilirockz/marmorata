@@ -1,0 +1,7 @@
+import "../base.just"
+
+default: secrets deploy
+
+secrets: \
+    (gen-random-key "miniflux_pgdb_pass") \
+    (gen-random-key "miniflux_admin_pass" "20")

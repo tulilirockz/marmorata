@@ -1,0 +1,26 @@
+[Unit]
+Description=Tailscale Mesh DNS server
+
+[Service]
+restart=always
+
+[Install]
+WantedBy=default.target
+
+[Container]
+ContainerName=tailscale
+Image=ghcr.io/tailscale/tailscale:latest
+AutoUpdate=registry
+
+Volume=tailscale_data:/var/lib/tailscale:Z
+AddDevice=/dev/net/tun
+AddCapability=net_admin
+
+Environment=TS_EXTRA_ARGS=--advertise-tags=tag:container
+Environment=TS_STATE_DIR=/var/lib/tailscale
+Environment=TS_USERSPACE=false
+Environment=TS_LOCAL_ADDR_PORT=9002
+Secret=tailscale_authkey,type=env,target=TS_AUTHKEY
+
+PublishPort=9002:9002/tcp
+PublishPort=9002:9002/udp

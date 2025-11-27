@@ -3,9 +3,6 @@ Description=Navidrome Main Container
 Wants=network-online.target
 After=network-online.target
 
-[Service]
-Restart=always
-
 [Install]
 WantedBy=default.target
 
