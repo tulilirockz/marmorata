@@ -15,3 +15,10 @@ PublishPort=9533:4533/udp
 Volume=navidrome_cache:/var/lib/navidrome/cache:Z
 Volume=navidrome_data:/var/lib/navidrome:Z
 Volume=%h/srv/jellyfin-media/music-tulip:/var/lib/navidrome/music:z,ro
+Environment=ND_ENABLEFAVOURITES=false
+Environment=ND_ENABLEGRAVATAR=false
+Environment=ND_ENABLENOWPLAYING=false
+Environment=ND_ENABLESTARRATING=false
+Environment=ND_ENABLETRANSCODINGCONFIG=true
+Environment=ND_UIWELCOMEMESSAGE=sussymogus
+Environment=ND_TRANSCODINGCACHESIZE=3000MB
