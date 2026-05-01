@@ -1,13 +1,16 @@
 import "../base.just"
 
-image_name := "ghcr.io/tulilirockz/radicale:latest"
+image_name := "ghcr.io/tulilirockz/triticum/radicale:latest"
 users_path := "/srv/data/users"
 default_user := "alice"
 
-default: create-directories deploy
+default: create-directories copy-config deploy
+
+copy-config:
+    cp -f ./radicale.ini "${HOME}/srv/radicale-config"
 
 create-directories:
-    mkdir -p "${HOME}/srv/radicale_data/data"
+    mkdir -p "${HOME}/srv/radicale-data" "${HOME}/srv/radicale-config"
 
 user:
-    podman run --rm -it -v "$HOME/srv/radicale_data:/srv/data:Z,rw" --entrypoint htpasswd {{ image_name }} -5 -c {{ users_path }} {{ default_user }}
+    podman run --rm -it -v "$HOME/srv/radicale-data:/srv/data:Z,rw" --entrypoint htpasswd {{ image_name }} -5 -c {{ users_path }} {{ default_user }}

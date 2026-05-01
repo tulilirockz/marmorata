@@ -1,19 +1,18 @@
 [Unit]
 Description=Radicale Main Container
-Wants=network-online.target
-After=network-online.target
 
 [Service]
-Restart=always
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=default.target
 
 [Container]
+AutoUpdate=registry
 ContainerName=radicale
 Image=ghcr.io/tulilirockz/triticum/radicale:latest
-AutoUpdate=registry
 PublishPort=9232:5232/tcp
 PublishPort=9232:5232/udp
-Volume=$PWD/radicale.ini:/etc/radicale/config:Z,ro
-Volume=%h/srv/radicale_data:/srv/data:Z,rw
+Volume=%h/srv/radicale-config/radicale.ini:/etc/radicale/config:Z,ro
+Volume=%h/srv/radicale-data:/srv/data:Z,rw
