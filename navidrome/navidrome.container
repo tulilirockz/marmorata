@@ -1,24 +1,24 @@
 [Unit]
 Description=Navidrome Main Container
-Wants=network-online.target
-After=network-online.target
+
+[Service]
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=default.target
 
 [Container]
-ContainerName=navidrome
-Image=ghcr.io/tulilirockz/triticum/navidrome:latest
 AutoUpdate=registry
-PublishPort=9533:4533/tcp
-PublishPort=9533:4533/udp
-Volume=navidrome_cache:/var/lib/navidrome/cache:Z
-Volume=navidrome_data:/var/lib/navidrome:Z
-Volume=%h/srv/jellyfin-media/music-tulip:/var/lib/navidrome/music:z,ro
 Environment=ND_ENABLEFAVOURITES=false
 Environment=ND_ENABLEGRAVATAR=false
 Environment=ND_ENABLENOWPLAYING=false
 Environment=ND_ENABLESTARRATING=false
 Environment=ND_ENABLETRANSCODINGCONFIG=true
-Environment=ND_UIWELCOMEMESSAGE=sussymogus
 Environment=ND_TRANSCODINGCACHESIZE=3000MB
+Image=ghcr.io/tulilirockz/triticum/navidrome:latest
+PublishPort=9533:4533/tcp
+PublishPort=9533:4533/udp
+Volume=%h/srv/music:/var/lib/navidrome/music:z,ro
+Volume=navidrome_cache:/var/lib/navidrome/cache:Z
+Volume=navidrome_data:/var/lib/navidrome:Z
