@@ -3,17 +3,18 @@ Description=Searxng Main Container
 Wants=network-online.target
 After=network-online.target
 
+[Service]
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
+
 [Container]
 ContainerName=searxng
 Image=docker.io/searxng/searxng:latest
 AutoUpdate=registry
-Volume=$PWD/config:/etc/searxng:Z
+Volume=%h/srv/searxng-config/settings.yml:/etc/searxng/settings.yml:Z
 Volume=searxng_cache:/var/cache/searxng:Z
 PublishPort=9080:8080/tcp
 PublishPort=9080:8080/udp
-
-[Service]
-Restart=always
-
-[Install]
-WantedBy=default.target

@@ -5,7 +5,7 @@ use_default_settings:
       - wikidata
 server:
   base_url: http://taxifolia:9080
-  secret_key: "8qbF3mDjG9oXgA0yB1hBtF7deQKpKK5YVKYbPLUqCE1wSbeDYCGadaGyH33wD1q8 YXWepsp/1SGFV0er/yimGw==" # idfc
+  secret_key: "8qbF3mDjG9oXgA0yB1hBtF7deQKpKK5YVKYbPLUqCE1wSbeDYCGadaGyH33wD1q8 YXWepsp/1SGFV0er/yimGw==" # idfc, randomly generated bs
   port: 8080
   bind_address: "127.0.0.1"
   limiter: false

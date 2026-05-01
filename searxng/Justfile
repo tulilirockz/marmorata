@@ -1,3 +1,7 @@
 import "../base.just"
 
-default: deploy
+default: copy-directories deploy
+
+copy-directories:
+    mkdir -p "${HOME}/srv/searxng-config"
+    cp -f ./settings.yml "${HOME}/srv/searxng-config"
