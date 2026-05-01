@@ -1,19 +1,20 @@
 [Unit]
 Description=Miniflux database container
 
+[Service]
+Restart=on-failure
+RestartSec=5s
+
 [Install]
 WantedBy=default.target
-RequiredBy=miniflux.service
 
 [Container]
-ContainerName=miniflux-pgdb
-Image=docker.io/library/postgres:17-alpine
 AutoUpdate=registry
-Pod=miniflux.pod
-AutoUpdate=registry
-Secret=miniflux_pgdb_pass,type=env,target=POSTGRES_PASSWORD
-Volume=%h/srv/miniflux-db:/var/lib/postgresql/data/pgdata:Z
 Environment=PGDATA=/var/lib/postgresql/data/pgdata
 Environment=PGPORT=5432
-Environment=POSTGRES_USER=postgres
 Environment=POSTGRES_DB=miniflux2
+Environment=POSTGRES_USER=postgres
+Image=docker.io/library/postgres:alpine
+Pod=miniflux.pod
+Secret=miniflux_pgdb_pass,type=env,target=POSTGRES_PASSWORD
+Volume=%h/srv/miniflux-db:/var/lib/postgresql/data/pgdata:Z
