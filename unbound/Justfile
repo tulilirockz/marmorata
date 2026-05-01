@@ -1,8 +1,14 @@
 import "../base.just"
 
-default: deploy
+default: create-directories copy-config deploy
 
 forward:
     firewall-cmd --add-forward-port=port=53:proto=tcp:toport=5335
     firewall-cmd --add-forward-port=port=53:proto=udp:toport=5335
+
+copy-config:
+    cp -f "./unbound.conf" "${HOME}/srv/unbound-config/unbound.conf"
+
+create-directories:
+    mkdir -p "${HOME}/srv/unbound-config" "${HOME}/srv/unbound-cache" "${HOME}/srv/unbound-log"
 

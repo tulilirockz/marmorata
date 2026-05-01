@@ -5,20 +5,17 @@ Description=Unbound DNS server
 DefaultDependencies=false
 
 [Service]
-restart=always
+# This we actually want _always_.
+Restart=always
 
 [Install]
 WantedBy=default.target
 
 [Container]
+AutoUpdate=registry
 ContainerName=unbound
 Image=ghcr.io/tulilirockz/triticum/unbound:latest
-AutoUpdate=registry
-Volume=unbound_data:/var/lib/unbound:Z
-Volume=$PWD/unbound.conf:/etc/unbound/unbound.conf:Z
-Volume=unbound_log:/var/log/unbound:Z
-
-# DNS Ports redirected to 53 using firewalld
 Network=host
-# PublishPort=5335:5335/tcp
-# PublishPort=5335:5335/udp
+Volume=%h/srv/unbound-config/unbound.conf:/etc/unbound/unbound.conf:Z
+Volume=%h/srv/unbound-cache:/var/lib/unbound:Z
+Volume=%h/srv/unbound-log:/var/log/unbound:Z
