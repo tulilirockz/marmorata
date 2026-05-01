@@ -4,28 +4,27 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-Restart=always
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=default.target
 
 [Container]
-ContainerName=qbittorrent
-Image=docker.io/qbittorrentofficial/qbittorrent-nox:latest
 AutoUpdate=registry
-Volume=$HOME/srv/jellyfin-media/:/media:z
-Volume=qbittorrent_config:/config:Z
-Volume=qbittorrent_torrent_files:/torrent_files:Z
-Environment=QBT_LEGAL_NOTICE=confirm
-Environment=QBT_VERSION=latest
+Environment=PGID=0
+Environment=PUID=0
 Environment=QBT_CONFIG_PATH=/config
 Environment=QBT_DOWNLOADS_PATH=/media
-Environment=QBT_WEBUI_PORT=9500
+Environment=QBT_LEGAL_NOTICE=confirm
 Environment=QBT_TORRENTING_PORT=6881
+Environment=QBT_VERSION=latest
+Environment=QBT_WEBUI_PORT=9500
+Image=docker.io/qbittorrentofficial/qbittorrent-nox:latest
 PublishPort=6881:6881/tcp
 PublishPort=6881:6881/udp
 PublishPort=9500:9500/tcp
 PublishPort=9500:9500/udp
-# Volume sharing
-Environment=PUID=0
-Environment=PGID=0
+Volume=$HOME/srv/media/:/media:z
+Volume=qbittorrent_config:/config:Z
+Volume=qbittorrent_torrent_files:/torrent_files:Z
