@@ -28,4 +28,4 @@ PublishPort=9096:8096/udp
 UserNS=keep-id
 Volume=%h/srv/jellyfin-cache:/cache:Z
 Volume=%h/srv/jellyfin-config:/config:Z
-Volume=%h/srv/jellyfin-media:/media:z
+Volume=%h/srv/media:/media:z

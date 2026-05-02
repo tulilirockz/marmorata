@@ -3,5 +3,4 @@ import "../base.just"
 default: create-directories deploy
 
 create-directories:
-    mkdir -p "${HOME}/srv/jellyfin-media"
-    mkdir -p "${HOME}/srv/syncthing-media"
+    mkdir -p "${HOME}/srv/jellyfin-media" "${HOME}/srv/syncthing-config" "${HOME}/srv/syncthing-data"
