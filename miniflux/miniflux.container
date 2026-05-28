@@ -22,7 +22,7 @@ Environment=BASE_URL=http://taxifolia
 Environment=POSTGRES_HOST=miniflux-pgdb
 Environment=POSTGRES_USER=postgres
 Environment=RUN_MIGRATIONS=true
-Image=ghcr.io/tulilirockz/triticum/miniflux:latest
+Image=ghcr.io/tulilirockz/cerasus/miniflux:latest
 Pod=miniflux.pod
 Secret=miniflux_admin_pass,type=env,target=ADMIN_PASSWORD
 Secret=miniflux_pgdb_pass,type=env,target=POSTGRES_PASSWORD

@@ -11,7 +11,7 @@ WantedBy=default.target
 [Container]
 AutoUpdate=registry
 ContainerName=radicale
-Image=ghcr.io/tulilirockz/triticum/radicale:latest
+Image=ghcr.io/tulilirockz/cerasus/radicale:latest
 PublishPort=9232:5232/tcp
 PublishPort=9232:5232/udp
 Volume=%h/srv/radicale-config/radicale.ini:/etc/radicale/config:Z,ro

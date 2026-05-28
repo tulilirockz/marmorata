@@ -1,6 +1,6 @@
 import "../base.just"
 
-image_name := "ghcr.io/tulilirockz/triticum/radicale:latest"
+image_name := "ghcr.io/tulilirockz/cerasus/radicale:latest"
 users_path := "/srv/data/users"
 default_user := "alice"
 
