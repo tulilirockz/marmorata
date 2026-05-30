@@ -10,7 +10,6 @@ WantedBy=default.target
 
 [Container]
 AutoUpdate=registry
-ContainerName=syncthing
 Environment=PGID=0
 Environment=PUID=0
 Image=docker.io/syncthing/syncthing:latest

@@ -11,7 +11,6 @@ WantedBy=default.target
 AddCapability=net_admin
 AddDevice=/dev/net/tun
 AutoUpdate=registry
-ContainerName=tailscale
 Environment=TS_EXTRA_ARGS=--advertise-tags=tag:container
 Environment=TS_LOCAL_ADDR_PORT=9002
 Environment=TS_STATE_DIR=/var/lib/tailscale

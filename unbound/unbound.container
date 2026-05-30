@@ -13,7 +13,6 @@ WantedBy=default.target
 
 [Container]
 AutoUpdate=registry
-ContainerName=unbound
 Image=ghcr.io/tulilirockz/cerasus/unbound:latest
 Network=host
 Volume=%h/srv/unbound-config/unbound.conf:/etc/unbound/unbound.conf:Z

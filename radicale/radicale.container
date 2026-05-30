@@ -10,7 +10,6 @@ WantedBy=default.target
 
 [Container]
 AutoUpdate=registry
-ContainerName=radicale
 Image=ghcr.io/tulilirockz/cerasus/radicale:latest
 PublishPort=9232:5232/tcp
 PublishPort=9232:5232/udp
