@@ -36,9 +36,9 @@ kill $app="":
     fi
 
     if [ "$(id -u)" == "0" ] ; then
-        systemctl stop $app*.service
+        systemctl stop --verbose $app*.service
     else
-        systemctl --user stop $app*.service
+        systemctl --user stop --verbose $app*.service
     fi
     rm -f $INSTALL_LOCATION/containers/systemd/$app*
     podman ps -a -q | grep "${app}" | xargs -n1 podman stop || true
@@ -55,8 +55,8 @@ gen-random-key $PODMAN_SECRET="" $BYTES="128":
 
 setup-system:
     set -x
-    systemctl enable --now podman.socket
-    systemctl enable --user --now podman.socket
+    systemctl enable --verbose --now podman.socket
+    systemctl enable --verbose --user --now podman.socket
     sudo setsebool -P container_use_dri_devices 1
 
 clean $app="":
@@ -91,9 +91,9 @@ start $app="":
         app="$(basename "${PWD}")"
     fi
     if [ "$(id -u)" == "0" ] ; then
-        systemctl start $app.service
+        systemctl start --verbose $app.service
     else
-        systemctl --user start $app.service
+        systemctl --user --verbose start $app.service
     fi
 
 firewall-xml $app="":
