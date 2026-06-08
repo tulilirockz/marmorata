@@ -19,5 +19,6 @@ Environment=TS_LOCAL_ADDR_PORT=9002
 Environment=TS_STATE_DIR=/var/lib/tailscale
 Environment=TS_USERSPACE=0
 Image=ghcr.io/tailscale/tailscale:latest
-Network=host
+PublishPort=9002:9002/tcp
+PublishPort=9002:9002/udp
 Volume=%h/srv/tailscale-data:/var/lib/tailscale:Z
