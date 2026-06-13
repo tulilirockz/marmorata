@@ -3,5 +3,4 @@ import "../base.just"
 default: create-directories deploy
 
 create-directories:
-    mkdir -p "${HOME}/srv/music"
-
+    mkdir -p "${HOME}/srv/music" "${HOME}/srv/navidrome-"{data,cache}
