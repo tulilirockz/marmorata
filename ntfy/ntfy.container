@@ -1,0 +1,15 @@
+[Unit]
+Description=Ntfy Notification Service
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
+
+[Container]
+AutoUpdate=registry
+Image=ghcr.io/tulilirockz/cerasus/ntfy:latest
+PublishPort=9303:8080/udp
+PublishPort=9303:8080/tcp
