@@ -14,7 +14,8 @@ Environment=ND_ENABLEFAVOURITES=false
 Environment=ND_ENABLEGRAVATAR=false
 Environment=ND_ENABLENOWPLAYING=false
 Environment=ND_ENABLESTARRATING=false
-Environment=ND_ENABLETRANSCODINGCONFIG=true
+# Enable only when configuring transcoding config, allows for RCE
+# Environment=ND_ENABLETRANSCODINGCONFIG=true
 Environment=ND_TRANSCODINGCACHESIZE=3000MB
 Image=ghcr.io/tulilirockz/cerasus/navidrome:latest
 PublishPort=9533:4533/tcp
