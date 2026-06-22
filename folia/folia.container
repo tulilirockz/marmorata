@@ -1,0 +1,16 @@
+[Unit]
+Description=Folia Minecraft Server
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
+
+[Container]
+AutoUpdate=registry
+Image=ghcr.io/tulilirockz/cerasus/folia:26.1
+Volume=%h/srv/folia-max:/srv/folia:Z,U,rw
+PublishPort=25565:25565/udp
+PublishPort=25565:25565/tcp
