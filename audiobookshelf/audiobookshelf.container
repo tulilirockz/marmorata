@@ -1,0 +1,21 @@
+[Unit]
+Description=Self-Hosted Audiobooks and more
+
+[Container]
+ContainerName=audiobookshelf
+Image=ghcr.io/advplyr/audiobookshelf:latest
+AutoUpdate=registry
+NoNewPrivileges=true
+PublishPort=1805:80/tcp
+PublishPort=1805:80/udp
+Volume=%h/srv/media/audiobooks:/audiobooks:Z,U
+Volume=%h/srv/media/books:/books:Z
+Volume=%h/srv/media/podcasts:/podcasts:Z
+Volume=%h/srv/abs-data/config:/config:Z
+Volume=%h/srv/abs-data/metadata:/metadata:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
