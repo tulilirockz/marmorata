@@ -41,8 +41,9 @@ kill $app="":
         systemctl --user stop --verbose $app*.service
     fi
     rm -f $INSTALL_LOCATION/containers/systemd/$app*
-    podman ps -a -q | grep "${app}" | xargs -n1 podman stop || true
-    podman ps -a -q | grep "${app}" | xargs -n1 podman rm || true
+    TEMPLATE_BLAH="$(tr -d '\\' <<< "\{\{ .Names \}\}")"
+    podman ps -a -q --format "${TEMPLATE_BLAH}" | grep "${app}" | xargs -n1 podman stop || true
+    podman ps -a -q --format "${TEMPLATE_BLAH}" | grep "${app}" | xargs -n1 podman rm || true
     {{ just }} daemon-reload
 
 read-secret $SECRET="":
